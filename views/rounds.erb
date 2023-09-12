@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Rounds</title>
+</head>
+<body>
+  <h1>Select Number of Rounds</h1>
+  <form action="/result" method="POST">
+    <input type="hidden" name="name" value="<%= @player_name %>">
+    <input type="hidden" name="rounds" value="<%= @rounds %>">
+    <% @rounds.times do |round| %>
+      <h2>Round <%= round + 1 %></h2>
+      <label for="choice<%= round %>">Choose your move:</label>
+      <select name="choice<%= round %>" id="choice<%= round %>">
+        <option value="Rock">Rock</option>
+        <option value="Paper">Paper</option>
+        <option value="Scissors">Scissors</option>
+      </select>
+    <% end %>
+    <input type="submit" value="Start Game">
+  </form>
+</body>
+</html>

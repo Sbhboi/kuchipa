@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Result</title>
+</head>
+<body>
+  <h1>Game Result</h1>
+  <p>Player: <%= @player_name %></p>
+  <% @results.each do |result| %>
+    <h2>Round <%= result[:round] %></h2>
+    <p>Player's Choice: <%= result[:player_choice] %></p>
+    <p>Computer's Choice: <%= result[:computer_choice] %></p>
+    <p>Result: <%= result[:result] %></p>
+  <% end %>
+</body>
+</html>
