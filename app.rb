@@ -12,6 +12,8 @@ def determine_winner(player_choice, computer_choice)
     end
 end
 
+set :player_scores, {}
+
 get '/' do
     erb :index
 end
@@ -26,15 +28,21 @@ post '/result' do
     @player_name = params[:name]
     @player_choice = params[:choice]
     @rounds = params[:rounds].to_i
-  
     @results = []
     @rounds.times do |round|
         @player_choice = params["choice#{round}"]
         @computer_choice = %w[Rock Paper Scissors].sample
         result = determine_winner(@player_choice, @computer_choice)
-      @results << {round: round +1, player_choice: @player_choice, computer_choice: @computer_choice, result: result }
+      @results << { round: round + 1, player_choice: @player_choice, computer_choice: @computer_choice, result: result }
     end
 
+    @player_scores ||= {}
+    @player_scores[@player_name] ||= 0
+
+    @results.each do |result|
+        @player_scores[@player_name] += 1 if result[:result] == 'You Win !'
+    end
+    
     erb :result
 end
 
