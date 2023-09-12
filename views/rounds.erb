@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Select Rounds</title>
 </head>
-<body>
+<body style="text-align:center">
   <h1>Select Number of Rounds</h1>
   <form action="/result" method="POST">
     <input type="hidden" name="name" value="<%= @player_name %>">
@@ -19,6 +19,7 @@
         <option value="Scissors">Scissors</option>
       </select>
     <% end %>
+    <br>
     <input type="submit" value="Start Game">
   </form>
 </body>

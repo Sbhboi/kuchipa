@@ -5,11 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Game Result</title>
 </head>
-<body>
+<body style="text-align:center">
   <h1>Game Result</h1>
-  <p>Player: <%= @player_name %></p>
+  <h2>Scores:</h2>
+  <% settings.player_scores.each do |player, score| %>
+    <p><%= player %>: <%= score %> points</p>
+  <% end %>
+  
+  <h2>Rounds Played:</h2>
   <% @results.each do |result| %>
-    <h2>Round <%= result[:round] %></h2>
+    <h3>Round <%= result[:round] %></h3>
     <p>Player's Choice: <%= result[:player_choice] %></p>
     <p>Computer's Choice: <%= result[:computer_choice] %></p>
     <p>Result: <%= result[:result] %></p>
