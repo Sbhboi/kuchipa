@@ -1,5 +1,4 @@
 require 'sinatra'
-
 def determine_winner(player_choice, computer_choice)
     if player_choice == computer_choice
         "Draw !"
@@ -17,13 +16,11 @@ set :player_scores, {}
 get '/' do
     erb :index
 end
-
 post '/play' do
     @player_name = params[:name]
     @rounds = params[:rounds].to_i
     erb :rounds
 end
-
 post '/result' do
     @player_name = params[:name]
     @player_choice = params[:choice]
@@ -42,7 +39,6 @@ post '/result' do
     @results.each do |result|
         @player_scores[@player_name] += 1 if result[:result] == 'You Win !'
     end
-    
+
     erb :result
 end
-
