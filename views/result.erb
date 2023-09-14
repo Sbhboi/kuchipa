@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Game Result</title>
     <style>
+      div.transbox {
+      margin: 200px;
+      background-color: #3d3939;
+      border: 1px solid black;
+      opacity: 0.8;
+    }
+
       body {
         background-image: url('https://static.tnn.in/thumb/msid-101491536,updatedat-1688645651256,thumbsize-49600,width-1280,height-720,resizemode-75/101491536.jpg');
         background-color: #A0B2A6;
@@ -14,27 +21,28 @@
     }
       h1 {
         font-family: 'Courier New', Courier, monospace;
-        color: #EABDA8;
         font-size: 300%;
         text-decoration: underline;
+        color:aqua
     }
       h2 {
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         text-decoration: underline overline;
-        color: #493843;
+        color: #e67979;
     }
       h3 {
-        color: #55286F;
+        color: #99d439;
     }
 
       p {
         font-weight: bolder;
-        color: #E8E8E8;
-        font-style: oblique;
+        color: #ffffff;
+        font-style: normal;
     }
       </style>
 </head>
 <body style="text-align:center">
+  <div class="transbox">
   <h1>Game Result</h1>
   <h2>Scores:</h2>
   <% settings.player_scores.each do |player, score| %>
@@ -48,5 +56,6 @@
     <p>Computer's Choice: <%= result[:computer_choice] %></p>
     <p>Result: <%= result[:result] %></p>
   <% end %>
+</div>
 </body>
 </html>
