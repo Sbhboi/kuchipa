@@ -1,4 +1,7 @@
 require 'sinatra'
+
+enable :sessions
+
 def determine_winner(player_choice, computer_choice)
     if player_choice == computer_choice
         "Draw !"
@@ -17,20 +20,18 @@ get '/' do
     erb :index
 end
 
-get '/index' do
-    erb :index
-end
-
 post '/play' do
-    @player_name = params[:name]
-    @rounds = params[:rounds].to_i
+    session[:player_name] = params[:name]
+    session[:rounds] = params[:rounds].to_i
+    @rounds = session[:rounds]
     erb :rounds
 end
+
 post '/result' do
-    @player_name = params[:name]
-    @player_choice = params[:choice]
-    @rounds = params[:rounds].to_i
+    @player_name = session[:player_name]
+    @rounds = session[:rounds]
     @results = []
+    
     @rounds.times do |round|
         @player_choice = params["choice#{round}"]
         @computer_choice = %w[Rock Paper Scissors].sample
@@ -38,11 +39,11 @@ post '/result' do
       @results << { round: round + 1, player_choice: @player_choice, computer_choice: @computer_choice, result: result }
     end
 
-    @player_scores ||= {}
-    @player_scores[@player_name] ||= 0
+    session[:player_scores] ||= {}
+    session[:player_scores][@player_name] ||= 0
 
     @results.each do |result|
-        @player_scores[@player_name] += 1 if result[:result] == 'You Win !'
+        session[:player_scores][@player_name] += 1 if result[:result] == 'You Win !' && result[:computer_choice] != 'Draw !'
     end
 
     erb :result
