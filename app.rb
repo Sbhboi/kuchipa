@@ -16,6 +16,11 @@ set :player_scores, {}
 get '/' do
     erb :index
 end
+
+get '/index' do
+    erb :index
+end
+
 post '/play' do
     @player_name = params[:name]
     @rounds = params[:rounds].to_i
